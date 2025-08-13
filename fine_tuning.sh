@@ -57,30 +57,30 @@ if [ $stage -le 4 ] && [ $stop_stage -ge 4 ]; then
     python src/f5_tts/train/datasets/prepare_csv_wavs.py "$DATASET_DIR" "$DATASET_DIR" --workers "$NUM_WOKERS"
 fi
 
-# Chạy quá trình fine-tuning
-if [ $stage -le 5 ] && [ $stop_stage -ge 5 ]; then
-    log "Start fine-tuning F5-TTS with your dataset ... "
-    python src/f5_tts/train/finetune_cli.py \
-        --exp_name "$EXP_NAME" \
-        --dataset_name "$DATASET_NAME" \
-        --batch_size_per_gpu "$BATCH_SIZE" \
-        --num_warmup_updates "$WARMUP_UPDATES" \
-        --save_per_updates "$SAVE_UPDATES" \
-        --last_per_updates "$LAST_UPDATES" \
-        --finetune \
-        --log_samples \
-        --pretrain "$PRETRAIN_CKPT"
-    ### Nếu bạn muốn training với nhiều gpu, sử dụng câu lệnh bên dưới:
-    # accelerate launch src/f5_tts/train/finetune_cli.py \
-    #     --exp_name "$EXP_NAME" \
-    #     --dataset_name "$DATASET_NAME" \
-    #     --batch_size_per_gpu "$BATCH_SIZE" \
-    #     --num_warmup_updates "$WARMUP_UPDATES" \
-    #     --save_per_updates "$SAVE_UPDATES" \
-    #     --last_per_updates "$LAST_UPDATES" \
-    #     --finetune \
-    #     --log_samples \
-    #     --pretrain "$PRETRAIN_CKPT"
-fi
+# # Chạy quá trình fine-tuning
+# if [ $stage -le 5 ] && [ $stop_stage -ge 5 ]; then
+#     log "Start fine-tuning F5-TTS with your dataset ... "
+#     python src/f5_tts/train/finetune_cli.py \
+#         --exp_name "$EXP_NAME" \
+#         --dataset_name "$DATASET_NAME" \
+#         --batch_size_per_gpu "$BATCH_SIZE" \
+#         --num_warmup_updates "$WARMUP_UPDATES" \
+#         --save_per_updates "$SAVE_UPDATES" \
+#         --last_per_updates "$LAST_UPDATES" \
+#         --finetune \
+#         --log_samples \
+#         --pretrain "$PRETRAIN_CKPT"
+#     ### Nếu bạn muốn training với nhiều gpu, sử dụng câu lệnh bên dưới:
+#     # accelerate launch src/f5_tts/train/finetune_cli.py \
+#     #     --exp_name "$EXP_NAME" \
+#     #     --dataset_name "$DATASET_NAME" \
+#     #     --batch_size_per_gpu "$BATCH_SIZE" \
+#     #     --num_warmup_updates "$WARMUP_UPDATES" \
+#     #     --save_per_updates "$SAVE_UPDATES" \
+#     #     --last_per_updates "$LAST_UPDATES" \
+#     #     --finetune \
+#     #     --log_samples \
+#     #     --pretrain "$PRETRAIN_CKPT"
+# fi
 
-log "Fine-tuning F5-TTS done."
+# log "Fine-tuning F5-TTS done."
