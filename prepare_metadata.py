@@ -60,7 +60,7 @@ def process_dataset():
 
             # Bỏ qua file không đạt yêu cầu
             duration = get_audio_duration(wav_path)
-            if duration < 1 or duration > 30 or len(text.split()) < 3:
+            if duration > 30:
                 continue
 
             # Ghi vào metadata.csv
