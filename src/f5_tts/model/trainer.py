@@ -147,8 +147,8 @@ class Trainer:
         self.accelerator.wait_for_everyone()
         if self.is_main:
             checkpoint = dict(
-                model_state_dict=self.accelerator.unwrap_model(self.model).state_dict(),
-                optimizer_state_dict=self.accelerator.unwrap_model(self.optimizer).state_dict(),
+                model_state_dict=self.accelerator.unwrap_model(self.model).state_dict(),  # unwrap model
+                optimizer_state_dict=self.optimizer.state_dict(),  # trực tiếp lấy state_dict của optimizer
                 ema_model_state_dict=self.ema_model.state_dict(),
                 scheduler_state_dict=self.scheduler.state_dict(),
                 update=update,
@@ -177,6 +177,7 @@ class Trainer:
                         oldest_checkpoint = checkpoints.pop(0)
                         os.remove(os.path.join(self.checkpoint_path, oldest_checkpoint))
                         print(f"Removed old checkpoint: {oldest_checkpoint}")
+
 
     def load_checkpoint(self):
         if (
@@ -241,7 +242,7 @@ class Trainer:
                     del checkpoint["model_state_dict"][key]
 
             self.accelerator.unwrap_model(self.model).load_state_dict(checkpoint["model_state_dict"])
-            self.accelerator.unwrap_model(self.optimizer).load_state_dict(checkpoint["optimizer_state_dict"])
+            self.optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
             if self.scheduler:
                 self.scheduler.load_state_dict(checkpoint["scheduler_state_dict"])
             update = checkpoint["update"]
