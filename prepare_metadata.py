@@ -46,7 +46,7 @@ def process_dataset():
             wav_dest_path = os.path.join(WAVS_DIR, wav_name)
 
             # Copy file âm thanh sang thư mục mới
-            shutil.copy(wav_path, wav_dest_path)
+            shutil.move(wav_path, wav_dest_path)
 
             # Đọc nội dung text
             txt_path = wav_path.replace(".wav", ".txt")
