@@ -21,10 +21,10 @@ NUM_WOKERS=16
 WARMUP_UPDATES=20000
 SAVE_UPDATES=10000
 LAST_UPDATES=10000
-PRETRAIN_CKPT="/mnt/d/ckpts/your_training_dataset/pretrained_model_1200000.pt"
+PRETRAIN_CKPT="ckpts/your_training_dataset/pretrained_model_1200000.pt"
 
 # Tạo các biến stage để quản lý pipeline, bước nào đã chạy rồi thì không cần chạy lại
-stage=5
+stage=1
 stop_stage=5
 
 # Chuẩn hoá sample_rate, bỏ qua stage này nếu audio của bạn đã ở định dạng 24Khz
