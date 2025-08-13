@@ -59,7 +59,7 @@ def process_dataset():
                 text = " ".join(text.split())
 
             # Bỏ qua file không đạt yêu cầu
-            duration = get_audio_duration(wav_path)
+            duration = get_audio_duration(wav_dest_path)
             if duration > 30:
                 continue
 
