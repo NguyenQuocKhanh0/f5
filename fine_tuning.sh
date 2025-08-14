@@ -68,6 +68,7 @@ if [ $stage -le 5 ] && [ $stop_stage -ge 5 ]; then
         --save_per_updates "$SAVE_UPDATES" \
         --last_per_updates "$LAST_UPDATES" \
         --finetune \
+        --epochs 20 \
         --log_samples \
         --pretrain "$PRETRAIN_CKPT"
     ### Nếu bạn muốn training với nhiều gpu, sử dụng câu lệnh bên dưới:
