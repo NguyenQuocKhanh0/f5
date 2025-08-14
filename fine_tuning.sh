@@ -67,6 +67,7 @@ if [ $stage -le 5 ] && [ $stop_stage -ge 5 ]; then
         --num_warmup_updates "$WARMUP_UPDATES" \
         --save_per_updates "$SAVE_UPDATES" \
         --last_per_updates "$LAST_UPDATES" \
+        --learning_rate 5e-6 \
         --finetune \
         --epochs 20 \
         --log_samples \
